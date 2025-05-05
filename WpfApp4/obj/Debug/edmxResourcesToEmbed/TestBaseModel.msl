@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище TestBaseModelContainer" CdmEntityContainer="TestBaseEntities1">
+    <EntitySetMapping Name="Material_type">
+      <EntityTypeMapping TypeName="TestBaseModel.Material_type">
+        <MappingFragment StoreEntitySet="Material_type">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Процент_брака_материала_" ColumnName="Процент брака материала " />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Partners">
+      <EntityTypeMapping TypeName="TestBaseModel.Partners">
+        <MappingFragment StoreEntitySet="Partners">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Тип_партнера" ColumnName="Тип партнера" />
+          <ScalarProperty Name="Наименование_партнера" ColumnName="Наименование партнера" />
+          <ScalarProperty Name="Директор" ColumnName="Директор" />
+          <ScalarProperty Name="Электронная_почта_партнера" ColumnName="Электронная почта партнера" />
+          <ScalarProperty Name="Телефон_партнера" ColumnName="Телефон партнера" />
+          <ScalarProperty Name="Юридический_адрес_партнера" ColumnName="Юридический адрес партнера" />
+          <ScalarProperty Name="ИНН" ColumnName="ИНН" />
+          <ScalarProperty Name="Рейтинг" ColumnName="Рейтинг" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Partners_product">
+      <EntityTypeMapping TypeName="TestBaseModel.Partners_product">
+        <MappingFragment StoreEntitySet="Partners_product">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ID_Product" ColumnName="ID Product" />
+          <ScalarProperty Name="ID_Partner" ColumnName="ID Partner" />
+          <ScalarProperty Name="Количество_продукции" ColumnName="Количество продукции" />
+          <ScalarProperty Name="Дата_продажи" ColumnName="Дата продажи" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Product">
+      <EntityTypeMapping TypeName="TestBaseModel.Product">
+        <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ID_Type" ColumnName="ID Type" />
+          <ScalarProperty Name="Наименование_продукции" ColumnName="Наименование продукции" />
+          <ScalarProperty Name="Артикул" ColumnName="Артикул" />
+          <ScalarProperty Name="Минимальная_стоимость_для_партнера" ColumnName="Минимальная стоимость для партнера" />
+          <ScalarProperty Name="ID_material" ColumnName="ID_material" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Product_type">
+      <EntityTypeMapping TypeName="TestBaseModel.Product_type">
+        <MappingFragment StoreEntitySet="Product_type">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Название" ColumnName="Название" />
+          <ScalarProperty Name="Коэффициент_типа_продукции" ColumnName="Коэффициент типа продукции" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

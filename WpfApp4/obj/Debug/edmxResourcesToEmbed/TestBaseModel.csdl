@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TestBaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Material_type">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Процент_брака_материала_" Type="Double" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_Product_Material_type" FromRole="Material_type" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Partners">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Тип_партнера" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Наименование_партнера" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Директор" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Электронная_почта_партнера" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Телефон_партнера" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Юридический_адрес_партнера" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ИНН" Type="Double" />
+    <Property Name="Рейтинг" Type="Double" />
+    <NavigationProperty Name="Partners_product" Relationship="Self.FK_Partners_product_Partners" FromRole="Partners" ToRole="Partners_product" />
+  </EntityType>
+  <EntityType Name="Partners_product">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_Product" Type="Int32" Nullable="false" />
+    <Property Name="ID_Partner" Type="Int32" Nullable="false" />
+    <Property Name="Количество_продукции" Type="Double" />
+    <Property Name="Дата_продажи" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Partners" Relationship="Self.FK_Partners_product_Partners" FromRole="Partners_product" ToRole="Partners" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_Partners_product_Product" FromRole="Partners_product" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_Type" Type="Int32" />
+    <Property Name="Наименование_продукции" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Артикул" Type="Double" />
+    <Property Name="Минимальная_стоимость_для_партнера" Type="Double" />
+    <Property Name="ID_material" Type="Int32" />
+    <NavigationProperty Name="Material_type" Relationship="Self.FK_Product_Material_type" FromRole="Product" ToRole="Material_type" />
+    <NavigationProperty Name="Partners_product" Relationship="Self.FK_Partners_product_Product" FromRole="Product" ToRole="Partners_product" />
+    <NavigationProperty Name="Product_type" Relationship="Self.FK_Product_Product_type" FromRole="Product" ToRole="Product_type" />
+  </EntityType>
+  <EntityType Name="Product_type">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Название" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Коэффициент_типа_продукции" Type="Double" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_Product_Product_type" FromRole="Product_type" ToRole="Product" />
+  </EntityType>
+  <Association Name="FK_Product_Material_type">
+    <End Role="Material_type" Type="Self.Material_type" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Material_type">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="ID_material" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Partners_product_Partners">
+    <End Role="Partners" Type="Self.Partners" Multiplicity="1" />
+    <End Role="Partners_product" Type="Self.Partners_product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Partners">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Partners_product">
+        <PropertyRef Name="ID_Partner" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Partners_product_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="Partners_product" Type="Self.Partners_product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Partners_product">
+        <PropertyRef Name="ID_Product" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Product_type">
+    <End Role="Product_type" Type="Self.Product_type" Multiplicity="0..1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product_type">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="ID_Type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TestBaseEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Material_type" EntityType="Self.Material_type" />
+    <EntitySet Name="Partners" EntityType="Self.Partners" />
+    <EntitySet Name="Partners_product" EntityType="Self.Partners_product" />
+    <EntitySet Name="Product" EntityType="Self.Product" />
+    <EntitySet Name="Product_type" EntityType="Self.Product_type" />
+    <AssociationSet Name="FK_Product_Material_type" Association="Self.FK_Product_Material_type">
+      <End Role="Material_type" EntitySet="Material_type" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Partners_product_Partners" Association="Self.FK_Partners_product_Partners">
+      <End Role="Partners" EntitySet="Partners" />
+      <End Role="Partners_product" EntitySet="Partners_product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Partners_product_Product" Association="Self.FK_Partners_product_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Partners_product" EntitySet="Partners_product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Product_type" Association="Self.FK_Product_Product_type">
+      <End Role="Product_type" EntitySet="Product_type" />
+      <End Role="Product" EntitySet="Product" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

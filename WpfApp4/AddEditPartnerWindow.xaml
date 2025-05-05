@@ -1,0 +1,66 @@
+﻿<Window x:Class="WpfApp4.AddEditPartnerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp4"
+        mc:Ignorable="d"
+        Title="{Binding WindowTitle}" Height="450" Width="600">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Content="Тип партнера:" Grid.Row="0" Grid.Column="0" Margin="0,0,5,5"/>
+        <ComboBox x:Name="cmbPartnerType" Grid.Row="0" Grid.Column="1" Margin="0,0,0,5">
+            <ComboBoxItem Content="ООО"/>
+            <ComboBoxItem Content="ЗАО"/>
+            <ComboBoxItem Content="ОАО"/>
+            <ComboBoxItem Content="ПАО"/>
+            <ComboBoxItem Content="ИП"/>
+        </ComboBox>
+
+        <Label Content="Наименование:" Grid.Row="1" Grid.Column="0" Margin="0,0,5,5"/>
+        <TextBox x:Name="txtName" Grid.Row="1" Grid.Column="1" Margin="0,0,0,5"/>
+
+        <Label Content="Директор:" Grid.Row="2" Grid.Column="0" Margin="0,0,5,5"/>
+        <TextBox x:Name="txtDirector" Grid.Row="2" Grid.Column="1" Margin="0,0,0,5"/>
+
+        <Label Content="Электронная почта:" Grid.Row="3" Grid.Column="0" Margin="0,0,5,5"/>
+        <TextBox x:Name="txtEmail" Grid.Row="3" Grid.Column="1" Margin="0,0,0,5"/>
+
+        <Label Content="Телефон:" Grid.Row="4" Grid.Column="0" Margin="0,0,5,5"/>
+        <TextBox x:Name="txtPhone" Grid.Row="4" Grid.Column="1" Margin="0,0,0,5"/>
+
+        <Label Content="Юридический адрес:" Grid.Row="5" Grid.Column="0" Margin="0,0,5,5"/>
+        <TextBox x:Name="txtAddress" Grid.Row="5" Grid.Column="1" Margin="0,0,0,5"/>
+
+        <Label Content="ИНН:" Grid.Row="6" Grid.Column="0" Margin="0,0,5,5"/>
+        <TextBox x:Name="txtINN" Grid.Row="6" Grid.Column="1" Margin="0,0,0,5"/>
+
+        <Label Content="Рейтинг:" Grid.Row="7" Grid.Column="0" Margin="0,0,5,5"/>
+        <Slider x:Name="sliderRating" Grid.Row="7" Grid.Column="1" Margin="0,0,0,5" 
+                Minimum="1" Maximum="10" TickFrequency="1" IsSnapToTickEnabled="True"/>
+        <Label Content="{Binding ElementName=sliderRating, Path=Value}" 
+               Grid.Row="8" Grid.Column="1" HorizontalAlignment="Left" Margin="0,0,0,5"/>
+
+        <StackPanel Grid.Row="10" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button x:Name="btnSave" Content="Сохранить" Width="100" Margin="5" Click="btnSave_Click"/>
+            <Button x:Name="btnCancel" Content="Отмена" Width="100" Margin="5" Click="btnCancel_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
